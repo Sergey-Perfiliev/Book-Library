@@ -1,0 +1,38 @@
+.section-books {
+	padding-top: 40px;
+	background-color: #fff;
+}
+
+.books-wrapper {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.book-brief-info {
+	padding: 30px 35px;
+	margin: 20px 10px;
+	top: 50%;
+	left: 50%;
+	
+	border-radius: 25px;
+	background-color: #f0f0f3;
+	cursor: pointer;
+
+	transition: .75s;
+}
+
+.book-brief-info:hover {
+	top: 50%;
+	left: 50%;
+
+	border-radius: 25px;
+	background-color: #f0f0f3;
+	box-shadow: 5px 5px 10px #d3d3d6,
+		-5px -5px 10px #fff;
+}
+
+.book-cover {
+	width: fit-content;
+	padding-bottom: 15px;
+}

@@ -1,0 +1,29 @@
+.search-bar-wrapper {
+	display: flex;
+	border-radius: 10px;
+	border: none;
+
+	transition: .75s;
+}
+
+.search-bar-input {
+	padding-left: 25px;
+	width: 300px;
+	height: 43px;
+
+	border-radius: 10px 0 0 10px;
+	background-color: #eff0f3;
+
+	font-size: 16px;
+}
+
+.search-bar-wrapper:hover {
+	background-color: #ffffff;
+	box-shadow: 0px 0px 20px 0px #eff0f3;
+}
+
+.search-bar-btn {
+	border: 1px solid #eff0f3;
+	background-color: #fff;
+	border-radius: 0 10px 10px 0;
+}
