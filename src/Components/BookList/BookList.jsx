@@ -2,8 +2,6 @@ import './BookList.css'
 import { connect } from 'react-redux'
 
 const BookList = (props) => {
-	let size = 'M'
-
 	return (
 		<main>
 			<div className="section-outer section-books">
@@ -13,15 +11,15 @@ const BookList = (props) => {
 							props.books.map(book =>
 								<div className="book-brief-info" key={book.key}>
 									<img
-										src={`https://covers.openlibrary.org/b/id/${book.cover_i}-${size}.jpg
-										?default=https://openlibrary.org/static/images/icons/avatar_book-sm.png`}
-										alt="book-img" className="book-cover" />
+										loading="lazy"
+										src={book.cover_url}
+										alt="book-img" className="book-cover book-cover_m" />
 									<div>
-										<h3 className="book-title">{book.title}</h3>
-										<h3 className="book-author">by {book.author_name}</h3>
+										<h3 className="book-title book-title_m">{book.title}</h3>
+										<h3 className="book-author book-author_m">by {book.author_name}</h3>
 									</div>
 								</div>
-							) : <h2>Books</h2>
+							) : <h3>Books</h3>
 					}
 				</div>
 			</div>

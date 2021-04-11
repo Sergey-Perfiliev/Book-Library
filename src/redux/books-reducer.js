@@ -12,7 +12,8 @@ const SEARCH_BOOKS = "SEARCH_BOOKS"
 // }
 
 const initialState = {
-	books: []
+	books: [],
+	dropList: false
 }
 
 export const BooksReducer = (state = initialState, action) => {
@@ -29,6 +30,12 @@ export const BooksReducer = (state = initialState, action) => {
 				books: action.books
 			}
 
+		case 'SET_DROP_LIST':
+			return {
+				...state,
+				dropList: action.value
+			}
+
 		default:
 			return state
 	}
@@ -36,6 +43,7 @@ export const BooksReducer = (state = initialState, action) => {
 
 const setBooks = (books) => ({ type: SET_BOOKS, books })
 const setSearchBooks = (books) => ({ type: SEARCH_BOOKS, books })
+export const setDropList = (value) => ({ type: 'SET_DROP_LIST', value })
 
 export const requestBooks = () => {
 	return async (dispatch) => {
@@ -47,8 +55,12 @@ export const requestBooks = () => {
 
 export const searchBooks = (value) => {
 	return async (dispatch) => {
+		dispatch(setDropList(false))
 		let data = await booksAPI.searchBooks(value)
 
-		dispatch(setSearchBooks(data))
+		data.forEach(element => element.cover_url = `https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg?default=https://openlibrary.org/static/images/icons/avatar_book-sm.png`)
+		
+		await dispatch(setSearchBooks(data))
+		dispatch(setDropList(true))
 	}
 }
