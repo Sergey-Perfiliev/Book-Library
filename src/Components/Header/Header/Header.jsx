@@ -1,4 +1,3 @@
-import React from 'react'
 import logo from '../../../assets/openlibrary-logo.svg'
 import SearchBar from './SearchBar'
 import '../../../App.css'

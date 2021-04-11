@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+* {
+	box-sizing: border-box;
+}
+
 .section-outer {
 	padding: 0 20px;
 }
@@ -32,6 +36,6 @@ h3 {
 	padding: 0;
 	margin: 0;
 	
-	font-size: 1.1rem;
+	font-size: 1.3rem;
 	font-weight: 400;
 }

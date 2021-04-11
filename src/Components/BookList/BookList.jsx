@@ -1,37 +1,38 @@
-import React from 'react'
 import './BookList.css'
-import BookCover from '../../assets/book-cover.jpg'
+import { connect } from 'react-redux'
 
-const BookList = () => {
+const BookList = (props) => {
+	let size = 'M'
+
 	return (
 		<main>
 			<div className="section-outer section-books">
 				<div className="section-inner books-wrapper">
-					<div className="book-brief-info">
-						<img src={BookCover} alt="book-img" className="book-cover" />
-						<div>
-							<h3>The Japanese haiku</h3>
-							<h3>C.E. Tuttle Co</h3>
-						</div>
-					</div>
-					<div className="book-brief-info">
-						<img src={BookCover} alt="book-img" className="book-cover" />
-						<div>
-							<h3>The Japanese haiku</h3>
-							<h3>C.E. Tuttle Co</h3>
-						</div>
-					</div>
-					<div className="book-brief-info">
-						<img src={BookCover} alt="book-img" className="book-cover" />
-						<div>
-							<h3>The Japanese haiku</h3>
-							<h3>C.E. Tuttle Co</h3>
-						</div>
-					</div>
+					{
+						props.books[0] ?
+							props.books.map(book =>
+								<div className="book-brief-info" key={book.key}>
+									<img
+										src={`https://covers.openlibrary.org/b/id/${book.cover_i}-${size}.jpg
+										?default=https://openlibrary.org/static/images/icons/avatar_book-sm.png`}
+										alt="book-img" className="book-cover" />
+									<div>
+										<h3 className="book-title">{book.title}</h3>
+										<h3 className="book-author">by {book.author_name}</h3>
+									</div>
+								</div>
+							) : <h2>Books</h2>
+					}
 				</div>
 			</div>
 		</main>
 	)
 }
 
-export default BookList
+const mapStateToProps = (state) => {
+	return {
+		books: state.books.books
+	}
+}
+
+export default connect(mapStateToProps)(BookList)

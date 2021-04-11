@@ -5,12 +5,19 @@ const instance = axios.create({
 })
 
 export const booksAPI = {
-	async getBooks() {
-		const res = await instance.get()
-		return res.data
+	getBooks() {
+		return instance.get()
+			.then(res => res.data)
 	},
-	async searchBooks() {
-		const res = await instance.get()
-		return res.data
+	searchBooks(value) {
+		return instance.get(`search.json?q="${value}"&fields=key,cover_i,title,author_name&limit=10`)
+			.then(res => res.data.docs)
+	},
+	getBookCover(cover_i, size = 'M') {
+		return axios.get(`https://covers.openlibrary.org/b/id/${cover_i}-${size}.jpg
+			?https://openlibrary.org/static/images/icons/avatar_book-sm.png`, {
+			'Content-Type': 'image / jpeg'
+		})
+			.then(res => res.data)
 	}
 }
