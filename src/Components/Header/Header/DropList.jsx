@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import Loader from '../../../assets/loader.svg'
 import { setModal } from '../../../redux/books-reducer'
 
-const DropList = ({ books, dropList, toggleIsFetching }) => {
+const DropList = ({ listBooks, dropList, toggleIsFetching }) => {
 	const dispatch = useDispatch()
 
 	const openModal = (book) => {
@@ -17,7 +17,7 @@ const DropList = ({ books, dropList, toggleIsFetching }) => {
 					<li>
 						<img src={Loader} alt="Loader" />
 					</li> :
-					books !== 0 ? books.map(book =>
+					listBooks !== 0 ? listBooks.map(book =>
 						<li key={book.key} onClick={() => openModal(book)}>
 							<img
 								loading="lazy"

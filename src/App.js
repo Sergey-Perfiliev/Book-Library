@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { connect, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import BookList from './Components/BookList/BookList';
@@ -15,14 +15,11 @@ const App = () => {
 	</div>
 }
 
-// connect App component
-const AppContainer = connect(null, null)(App)
-
 const Books = () => {
 	return (
 		<BrowserRouter>
 			<Provider store={store}>
-				<AppContainer />
+				<App />
 			</Provider>
 		</BrowserRouter>
 	);

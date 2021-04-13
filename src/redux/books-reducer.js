@@ -1,25 +1,15 @@
 import { booksAPI } from "../api/api"
 
-const SET_BOOKS = "GET_BOOKS"
 const SEARCH_BOOKS = "SEARCH_BOOKS"
 const SET_DROP_LIST = "SET_DROP_LIST"
+const SET_LIST_BOOKS = "SET_LIST_BOOKS"
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
 const SET_MODAL = "SET_MODAL"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const SET_NUM_FOUND = "SET_NUM_FOUND"
 
-// {
-// 	"key": null,
-// 	"title": null,
-// 	"cover_i": null,
-// 	"author_name": [],
-// 	"cover": null,
-// 	numFound: null,
-// 	currentPage: null,
-// }
-
 const initialState = {
+	listBooks: [],
 	books: [],
 	dropList: false,
 	modal: false,
@@ -33,10 +23,10 @@ const initialState = {
 // Reducer
 export const BooksReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case SET_BOOKS:
+		case SET_LIST_BOOKS:
 			return {
 				...state,
-				books: action.books
+				listBooks: action.listBooks
 			}
 
 		case SEARCH_BOOKS:
@@ -48,7 +38,7 @@ export const BooksReducer = (state = initialState, action) => {
 		case SET_DROP_LIST:
 			return {
 				...state,
-				dropList: action.value
+				dropList: action.mode // boolean
 			}
 
 		case TOGGLE_IS_FETCHING:
@@ -70,12 +60,6 @@ export const BooksReducer = (state = initialState, action) => {
 				currentPage: action.page
 			}
 
-		case SET_TOTAL_USERS_COUNT:
-			return {
-				...state,
-				totalUsersCount: action.count
-			}
-
 		case SET_NUM_FOUND:
 			return {
 				...state,
@@ -87,28 +71,31 @@ export const BooksReducer = (state = initialState, action) => {
 	}
 }
 
-export const setBooks = (books) => ({ type: SET_BOOKS, books })
+export const setListBooks = (listBooks) => ({ type: SET_LIST_BOOKS, listBooks })
 export const setSearchBooks = (books) => ({ type: SEARCH_BOOKS, books })
-export const setDropList = (value) => ({ type: SET_DROP_LIST, value })
+export const setDropList = (mode) => ({ type: SET_DROP_LIST, mode })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const setModal = (value, book) => ({ type: SET_MODAL, value, book })
 export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page })
 export const setNumFound = (numFound) => ({ type: SET_NUM_FOUND, numFound })
 
-
 // Thunks
-export const requestBooks = () => {
+export const searchListBooks = (value) => {
 	return async (dispatch) => {
-		let data = await booksAPI.getBooks()
+		dispatch(toggleIsFetching(true))
+		let data = await booksAPI.searchBooks(value)
 
-		dispatch(setBooks(data.books))
+		data.docs.forEach(element => element.cover_url = `https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg?default=https://openlibrary.org/static/images/icons/avatar_book-sm.png`)
+
+		await dispatch(setListBooks(data.docs))
+		dispatch(toggleIsFetching(false))
 	}
 }
 
 export const searchBooks = (value, offset) => {
 	return async (dispatch) => {
 		// set toggle
-		dispatch(toggleIsFetching(true))
+		// dispatch(toggleIsFetching(true))
 		let data = await booksAPI.searchBooks(value, offset)
 
 		dispatch(setNumFound(data.numFound))
@@ -116,6 +103,6 @@ export const searchBooks = (value, offset) => {
 		data.docs.forEach(element => element.cover_url = `https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg?default=https://openlibrary.org/static/images/icons/avatar_book-sm.png`)
 
 		await dispatch(setSearchBooks(data.docs))
-		dispatch(toggleIsFetching(false))
+		// dispatch(toggleIsFetching(false))
 	}
 }

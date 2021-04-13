@@ -1,62 +1,55 @@
-import react from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { searchBooks, setCurrentPage } from '../../../redux/books-reducer'
+import { searchBooks, searchListBooks, setCurrentPage } from '../../../redux/books-reducer'
 import { setDropList } from '../../../redux/books-reducer'
 import '../../../App.css'
 import './SearchBar.css'
 import DropList from './DropList'
 
 
-const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setModal, data, setData }) => {
+const SearchBar = ({ listBooks, searchBooks, searchListBooks, dropList, toggleIsFetching, modal, setModal, data, setData }) => {
 	const dispatch = useDispatch()
+	const setList = () => {
+		if (data) {
+			searchListBooks(data)
+			dispatch(setDropList(true))
+		}
+	}
 
 	// handle 1seconds delay
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
 			// check empty row
-			if (data !== "") {
-				dispatch(setCurrentPage(1))
-				searchBooks(data)
-				dispatch(setDropList(true))
-			}
+			setList()
 		}, 1000)
 
 		// clear timeout
 		return () => clearTimeout(delayDebounceFn)
-	}, [data])
+	}, [data]) //
 
 	// Find button
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		dispatch(setDropList(false))
 		dispatch(setCurrentPage(1))
-		return data !== "" ? searchBooks(data) : undefined
+		return data ? searchBooks(data) : undefined
 	}
 
-	const handleFocus = () => {
-		if (data !== "") {
-			searchBooks(data)
-			dispatch(setCurrentPage(1))
-			dispatch(setDropList(true))
-		}
-	}
+	const handleFocus = () =>  setList()
 
 	const closeModalWindow = () => {
-		console.log('blur')
 		dispatch(setDropList(false))
 	}
 
 	// set focus to an element
 	const setFocus = (e) => {
-		console.log('focus')
 		e.currentTarget.focus()
 	}
 
 	return (
 		<div className="search-bar-wrapper"
-			onLoad={setFocus}
 			onBlur={closeModalWindow}
+			onLoad={setFocus}
 		>
 			<form onSubmit={(e) => handleSubmit(e)}
 				className="search-bar"
@@ -79,7 +72,7 @@ const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setM
 			<DropList
 				modal={modal}
 				dropList={dropList}
-				books={books}
+				listBooks={listBooks}
 				toggleIsFetching={toggleIsFetching}
 			/>
 		</div>
@@ -88,11 +81,11 @@ const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setM
 
 const mapStateToProps = (state) => {
 	return {
-		books: state.books.books,
+		listBooks: state.books.listBooks,
 		dropList: state.books.dropList,
 		toggleIsFetching: state.books.toggleIsFetching,
-		modal: state.books.modal
+		modal: state.books.modal,
 	}
 }
 
-export default connect(mapStateToProps, { searchBooks })(SearchBar)
+export default connect(mapStateToProps, { searchBooks, searchListBooks })(SearchBar)
