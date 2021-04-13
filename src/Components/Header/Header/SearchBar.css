@@ -1,5 +1,7 @@
 .search-bar-wrapper {
+  position: relative;
   display: inline-block;
+
   width: 373px;
 }
 
@@ -7,16 +9,18 @@
   display: flex;
   border-radius: 10px;
   border: none;
+
+  transition: 0.2s;
 }
 
 .search-bar-input {
   height: 43px;
   width: 300px;
-  position: relative;
   padding-left: 25px;
 
   border-radius: 10px 0 0 10px;
   background-color: #eff0f3;
+  border: 1px solid #eff0f3;
 
   font-size: 16px;
 }
@@ -32,15 +36,17 @@
   border-radius: 0 10px 10px 0;
 }
 
-.search-bar-input--active {
+.search-bar-input--active,
+.search-bar-btn--active {
   border-top: 1px solid #cfd2da;
   border-left: 1px solid #cfd2da;
+}
+
+.search-bar-input--active {
   border-radius: 10px 0 0 0;
 }
 
 .search-bar-btn--active {
-  border-top: 1px solid #cfd2da;
-  border-right: 1px solid #cfd2da;
   border-radius: 0 10px 0 0;
 }
 
@@ -48,37 +54,19 @@
   position: absolute;
   width: 373px;
 
-  animation-name: animateopacity;
-  animation-duration: 0.5s;
-}
-
-.dropList:hover {
-  display: block;
-}
-
-@keyframes animateopacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .dropList li {
   display: flex;
   padding: 10px 25px;
-
-  cursor: pointer;
-  background-color: #eff0f3;
-
   height: 74px;
-}
+	cursor: pointer;
+  z-index: 1;
 
-.dropList li {
   border-top: 1px solid #d4d7df;
   border-right: 1px solid #cfd2da;
   border-left: 1px solid #cfd2da;
+  background-color: #eff0f3;
 }
 
 .dropList li:last-child {

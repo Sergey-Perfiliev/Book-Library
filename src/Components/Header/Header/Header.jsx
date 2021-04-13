@@ -10,10 +10,10 @@ const Header = (props) => {
 				<div className="header-logo">
 					<img src={logo} alt="library-logo" />
 				</div>
-				<SearchBar />
+				<SearchBar data={props.data} setData={props.setData} />
 			</div>
 		</header>
 	)
 }
- 
+
 export default Header

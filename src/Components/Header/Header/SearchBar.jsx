@@ -1,24 +1,24 @@
 import react from 'react'
 import { useEffect, useState } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { searchBooks } from '../../../redux/books-reducer'
+import { searchBooks, setCurrentPage } from '../../../redux/books-reducer'
 import { setDropList } from '../../../redux/books-reducer'
 import '../../../App.css'
 import './SearchBar.css'
 import DropList from './DropList'
 
 
-const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setModal }) => {
+const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setModal, data, setData }) => {
 	const dispatch = useDispatch()
-	const [data, setData] = useState('')
 
 	// handle 1seconds delay
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
 			// check empty row
 			if (data !== "") {
-				dispatch(setDropList(true))
+				dispatch(setCurrentPage(1))
 				searchBooks(data)
+				dispatch(setDropList(true))
 			}
 		}, 1000)
 
@@ -30,13 +30,15 @@ const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setM
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		dispatch(setDropList(false))
+		dispatch(setCurrentPage(1))
 		return data !== "" ? searchBooks(data) : undefined
 	}
 
 	const handleFocus = () => {
 		if (data !== "") {
-			dispatch(setDropList(true))
 			searchBooks(data)
+			dispatch(setCurrentPage(1))
+			dispatch(setDropList(true))
 		}
 	}
 
@@ -53,7 +55,6 @@ const SearchBar = ({ books, searchBooks, dropList, toggleIsFetching, modal, setM
 
 	return (
 		<div className="search-bar-wrapper"
-			// tabIndex={0}
 			onLoad={setFocus}
 			onBlur={closeModalWindow}
 		>

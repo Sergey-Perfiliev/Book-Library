@@ -1,7 +1,9 @@
 import './BookList.css'
 import { connect, useDispatch } from 'react-redux'
 import BookInfo from '../BookInfo'
-import { setModal } from '../../redux/books-reducer'
+import { setCurrentPage, setModal } from '../../redux/books-reducer'
+import Paginator from './Paginator'
+import { searchBooks } from '../../redux/books-reducer'
 
 const BookList = (props) => {
 	const dispatch = useDispatch()
@@ -9,12 +11,22 @@ const BookList = (props) => {
 		dispatch(setModal(true, book))
 	}
 
+	const onPageChanged = (pageNumber) => {
+		dispatch(setCurrentPage(pageNumber))
+		props.searchBooks(props.data, (pageNumber * 5) - 5)
+	}
+
 	return (
 		<main>
 			<div className="section-outer section-books">
 				<div className="section-inner books-wrapper">
-					<BookInfo modal={props.modal} />
-					<div>
+					<Paginator
+						totalItemsCount={props.numFound}
+						pageSize={props.pageSize}
+						currentPage={props.currentPage}
+						onPageChanged={onPageChanged}
+					/>
+					<div className="books">
 						{
 							props.books.length ?
 								props.books.map(book =>
@@ -34,6 +46,7 @@ const BookList = (props) => {
 									</div>
 								) : <h3>Search some books that you want to read!</h3>
 						}
+						<BookInfo modal={props.modal} />
 					</div>
 				</div>
 			</div>
@@ -44,8 +57,11 @@ const BookList = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		books: state.books.books,
-		modal: state.books.modal
+		modal: state.books.modal,
+		numFound: state.books.numFound,
+		currentPage: state.books.currentPage,
+		pageSize: state.books.pageSize
 	}
 }
 
-export default connect(mapStateToProps)(BookList)
+export default connect(mapStateToProps, { searchBooks })(BookList)

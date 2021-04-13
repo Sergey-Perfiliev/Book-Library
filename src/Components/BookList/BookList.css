@@ -1,5 +1,5 @@
 .section-books {
-	padding-top: 40px;
+	padding-top: 20px;
 	background-color: #fff;
 }
 
@@ -15,7 +15,7 @@
 	background-color: #f0f0f3;
 	cursor: pointer;
 
-	transition: .75s;
+	transition: all .75s;
 }
 
 .book-brief-info:hover {

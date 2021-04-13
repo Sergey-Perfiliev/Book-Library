@@ -1,101 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 html {
-	width:100vw;
-	overflow-x:hidden;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .section-outer {
-	padding: 0 20px;
+  padding: 0 20px;
 }
 
 .section-inner {
-	max-width: 1024px;
-	margin: 0 auto;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 li {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-	text-decoration: none;
-	color: #000;
+  text-decoration: none;
+  color: #000;
 }
 
-input, button {
-	border: none;
-	outline: none;
+input,
+button {
+  border: none;
+  outline: none;
 
-	transition: .15s;
+  transition: 0.15s;
 }
 
 button {
-	cursor: pointer;
+  cursor: pointer;
 }
 
-h1, h2, h3, h4, h5, h6, a {
-	font-family: "Quicksand", sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: "Quicksand", sans-serif;
 
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 h3 {
-	font-size: 1.3rem;
-	font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 h4 {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .book-title {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .book-title_m {
-	margin-top: 16px;
-	font-size: 1.4rem;
+  margin-top: 16px;
+  font-size: 1.4rem;
 }
 
-.book-title_sm, .book-author_sm {
-	font-size: .9rem;
+.book-title_sm,
+.book-author_sm {
+  font-size: 0.9rem;
 }
 
 /*  */
 
 .book-author_m {
-	font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 /*  */
 
-.book-cover_sm { 
-	width: 40px;
+.book-cover_sm {
+  width: 40px;
 }
 
-.book-cover_m { 
-	margin-right: 35px;
-	width: 140px;
+.book-cover_m {
+  margin-right: 35px;
+  width: 140px;
 }
 
-.book-cover_l { 
-	width: 200px;
+.book-cover_l {
+  width: 200px;
 }
 
 .el-no-br {
-	border-radius: 0;
+  border-radius: 0;
+}
+
+.book-brief-info {
+  animation-name: animateopacity;
+  animation-duration: 0.5s;
+}
+
+.dropList,
+.dropList li {
+  animation-name: animateopacity;
+  animation-duration: 0.5s;
+}
+
+@keyframes animateopacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  animation-name: animatetop;
+  animation-duration: 0.2s;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }

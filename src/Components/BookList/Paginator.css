@@ -1,0 +1,29 @@
+.pagination {
+	display: flex;
+}
+
+.pageNumber {
+	cursor: pointer;
+	color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+
+	transition: all .2s;
+}
+
+.pageNumber.selectedPage {
+	background-color: #c4c0af;
+  color: white;
+}
+
+.pagination button {
+	color: black;
+  padding: 6px 8px;
+  background-color: transparent;
+	border: none;
+	cursor: pointer;
+	outline: 1px solid #fff;
+}
+
+.pagination .pageNumber:hover:not(.selectedPage) {background-color: #ddd;}
