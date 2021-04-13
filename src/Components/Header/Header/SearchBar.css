@@ -1,78 +1,92 @@
-.search-bar {
-	display: flex;
-	border-radius: 10px;
-	border: none;
-
-	transition: .75s;
+.search-bar-wrapper {
+  display: inline-block;
+  width: 373px;
 }
 
-.search-bar-input, .dropList {
-	height: 43px;
+.search-bar {
+  display: flex;
+  border-radius: 10px;
+  border: none;
 }
 
 .search-bar-input {
-	width: 300px;
-	position: relative;
-	padding-left: 25px;
+  height: 43px;
+  width: 300px;
+  position: relative;
+  padding-left: 25px;
 
-	border-radius: 10px 0 0 10px;
-	background-color: #eff0f3;
+  border-radius: 10px 0 0 10px;
+  background-color: #eff0f3;
 
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .search-bar:hover {
-	background-color: #ffffff;
-	box-shadow: 0px 0px 20px 0px #eff0f3;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 20px 0px #eff0f3;
 }
 
 .search-bar-btn {
-	border: 1px solid #eff0f3;
-	background-color: #fff;
-	border-radius: 0 10px 10px 0;
+  border: 1px solid #eff0f3;
+  background-color: #fff;
+  border-radius: 0 10px 10px 0;
 }
 
 .search-bar-input--active {
-	border-top: 1px solid #cfd2da;
-	border-left: 1px solid #cfd2da;
-	border-radius: 10px 0 0 0;
+  border-top: 1px solid #cfd2da;
+  border-left: 1px solid #cfd2da;
+  border-radius: 10px 0 0 0;
 }
 
 .search-bar-btn--active {
-	border-top: 1px solid #cfd2da;
-	border-right: 1px solid #cfd2da;
-	border-radius: 0 10px 0 0;
+  border-top: 1px solid #cfd2da;
+  border-right: 1px solid #cfd2da;
+  border-radius: 0 10px 0 0;
 }
 
 .dropList {
-	position: absolute;
-	width: 373px;
+  position: absolute;
+  width: 373px;
 
-	transition: .2s;
+  animation-name: animateopacity;
+  animation-duration: 0.5s;
+}
+
+.dropList:hover {
+  display: block;
+}
+
+@keyframes animateopacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .dropList li {
-	display: flex;
-	padding: 10px 25px;
+  display: flex;
+  padding: 10px 25px;
 
-	cursor: pointer;
-	background-color: #eff0f3;
-	
-	height: 74px;
+  cursor: pointer;
+  background-color: #eff0f3;
+
+  height: 74px;
 }
 
 .dropList li {
-	border-top: 1px solid #d4d7df;
-	border-right: 1px solid #cfd2da;
-	border-left: 1px solid #cfd2da;
+  border-top: 1px solid #d4d7df;
+  border-right: 1px solid #cfd2da;
+  border-left: 1px solid #cfd2da;
 }
 
 .dropList li:last-child {
-	border-bottom: 1px solid #cfd2da;
-	border-radius: 0 0 10px 10px;
+  border-bottom: 1px solid #cfd2da;
+  border-radius: 0 0 10px 10px;
 }
 
 .dropList li div {
-	overflow: hidden;
-	padding: 5px;
+  overflow: hidden;
+  padding: 5px;
 }

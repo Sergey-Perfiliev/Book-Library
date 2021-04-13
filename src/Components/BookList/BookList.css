@@ -25,4 +25,8 @@
 		-5px -5px 10px #fff;
 }
 
+.book-brief-info > div {
+	max-width: 460px;
+}
+
 /* .book-cover {} */

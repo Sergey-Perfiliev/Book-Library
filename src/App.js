@@ -12,6 +12,7 @@ const App = () => {
 	</div>
 }
 
+// connect App component
 const AppContainer = connect(null, null)(App)
 
 const Books = () => {

@@ -10,7 +10,7 @@ export const booksAPI = {
 			.then(res => res.data)
 	},
 	searchBooks(value) {
-		return instance.get(`search.json?q="${value}"&fields=key,cover_i,title,author_name&limit=10`)
+		return instance.get(`search.json?q=${value}&facet=false&limit=5&_spellcheck_count=0&fields=key,cover_i,title,author_name,publish_date,publisher&mode=everything`)
 			.then(res => res.data.docs)
 	},
 	getBookCover(cover_i, size = 'M') {
