@@ -29,4 +29,8 @@
 	max-width: 460px;
 }
 
+.books-loader {
+	padding: 40px;
+}
+
 /* .book-cover {} */

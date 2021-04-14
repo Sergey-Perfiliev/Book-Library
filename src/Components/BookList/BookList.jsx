@@ -25,16 +25,17 @@ const BookList = (props) => {
 		<main>
 			<div className="section-outer section-books">
 				<div className="section-inner books-wrapper">
+					<Paginator
+						totalItemsCount={props.numFound}
+						pageSize={props.pageSize}
+						currentPage={props.currentPage}
+						onPageChanged={onPageChanged}
+					/>
 					{
-						loader ? 
-						<img src={Loader} alt="loader" /> :
-						<>
-							<Paginator
-								totalItemsCount={props.numFound}
-								pageSize={props.pageSize}
-								currentPage={props.currentPage}
-								onPageChanged={onPageChanged}
-							/>
+						loader ?
+							<>
+								<img src={Loader} alt="loader" className="books-loader" />
+							</> :
 							<div className="books">
 								{
 									props.books.length ?
@@ -57,7 +58,6 @@ const BookList = (props) => {
 								}
 								<BookInfo modal={props.modal} />
 							</div>
-						</>
 					}
 				</div>
 			</div>
