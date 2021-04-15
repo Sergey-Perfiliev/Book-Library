@@ -1,5 +1,6 @@
 .section-header {
-	padding: 15px 0;
+	padding-left: 15px;
+	padding-right: 25px;
 	position: relative;
 	background-color: #e1dcc5;
 }
@@ -22,4 +23,18 @@
   border: 1px solid transparent;
   border-radius: 2px;
   color: "gray";
+}
+
+@media (max-width: 649px) {	
+	.header-wrapper {
+		flex-direction: column;
+	}
+
+	/* .section-books {
+		padding: 10px;
+	}
+
+	.book-brief-info > div {
+		max-width: 270px;
+	} */
 }

@@ -1,13 +1,11 @@
 .section-books {
-	padding-top: 20px;
+	padding: 35px 40px;
 	background-color: #fff;
 }
 
-/* .books-wrapper {} */
-
 .book-brief-info {
 	display: flex;
-	width: 700px;
+	max-width: 700px;
 	padding: 25px 40px 25px 25px;
 	margin: 20px 10px;
 	
@@ -33,4 +31,86 @@
 	padding: 40px;
 }
 
-/* .book-cover {} */
+@media (min-width: 769px) and (max-width: 1024px) {
+	.section-books {
+		padding: 45px 60px;
+	}
+
+	.book-brief-info {
+		max-width: 630px;
+	}
+
+	.book-brief-info > div {
+		max-width: 400px;
+	}
+}
+
+@media 	(max-width: 768px) {	
+	.section-books {
+		padding: 25px;
+	}
+
+	.book-brief-info {
+		max-width: 630px;
+		margin-right: 20px;
+	}
+
+	.book-brief-info > div {
+		max-width: 405px;
+	}
+}
+
+@media (min-width: 650px) and (max-width: 700px) {	
+	.book-brief-info > div {
+		max-width: 360px;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 649px) {
+	.book-brief-info > div {
+		max-width: 290px;
+	}
+}
+
+@media (min-width: 426px) and (max-width: 499px) {	
+	html {
+		font-size: 14px;
+	}
+
+	.book-cover_m {
+		max-height: 160px;
+		width: 100px;
+	}
+
+	.book-brief-info > div {
+		max-width: 200px;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 425px) {	
+	.book-brief-info {
+		padding: 40px 30px;
+		justify-content: center;
+	}
+
+	.book-brief-info > div {
+		position: absolute;
+		opacity: 0;
+	}
+
+	.books {
+		display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	}
+
+	.book-brief-info {
+		max-width: 300px;
+	}
+
+	.book-cover_m {
+		margin-right: 0;
+		width: 190px;
+	}
+}

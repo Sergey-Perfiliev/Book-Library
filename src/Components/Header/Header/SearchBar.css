@@ -78,3 +78,24 @@
   overflow: hidden;
   padding: 5px;
 }
+
+@media (max-width: 649px) {	
+	.search-bar-wrapper {
+		margin-top: 15px;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 425px) {	
+	.search-bar-wrapper {
+		max-width: 320px;
+	}
+	
+	.search-bar {
+		margin-right: 0;
+		justify-content: center;
+	}
+
+	.search-bar-input {
+		max-width: 220px;
+	}
+}

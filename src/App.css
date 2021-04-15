@@ -10,7 +10,8 @@ html {
 }
 
 .section-outer {
-  padding: 0 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .section-inner {
@@ -142,4 +143,34 @@ h4 {
     top: 0;
     opacity: 1;
   }
+}
+
+@media (max-width: 1024px) {	
+	.book-title_m {
+		margin-top: 14px;
+		font-size: 1.3rem;
+	}
+	
+	.book-title_sm,
+	.book-author_sm {
+		font-size: 0.9rem;
+	}
+	
+	.book-author_m {
+		font-size: 1.2rem;
+	}
+	
+	.book-cover_sm {
+		width: 40px;
+	}
+	
+	.book-cover_m {
+		margin-right: 30px;
+		width: 120px;
+		max-height: 190px
+	}
+	
+	.book-cover_l {
+		width: 180px;
+	}
 }
